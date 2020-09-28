@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  tekhnelogosweb:
+    image: ${DOCKER_REGISTRY-}tekhnelogosweb
+    build:
+      context: .
+      dockerfile: TekhnelogosWeb/Dockerfile
+    depends_on:
+      - rabbit
+  rabbit:
+    image: rabbitmq:3-management-alpine
+    hostname: rabbit
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    expose:
+      - 15672
+      - 5672
